@@ -6,6 +6,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 
+const productController = require('./controllers/product');
+
 dotenv.config();
 
 const app = express();
@@ -17,7 +19,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI, {
   useMongoClient: true,
 });
-mongoose.connection.on('error', () => {
+mongoose.connection.on('error', (e) => {
+  console.log(e);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
   process.exit();
 });
@@ -29,21 +32,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const apiPrefix = '/v1';
 
-const rountNotMethodAllow = (req, res) => {
-  const err = Response.responseWithError(405);
-  res.status(err.status).send(err);
-};
-
 app.get(`${apiPrefix}/`, (req, res) => {
   res.send({ message: 'Welcome to EMERCE' });
 });
 
-// ************************** Set Url 404 ************************** //
-app.use((req, res) => {
-  const err = Response.responseWithError(404);
-  res.status(err.status).send(err);
-});
-// ************************** End Set Url 404 ************************** //
+app.get(`${apiPrefix}/products`, productController.getProduct);
+app.post(`${apiPrefix}/products`, productController.createProduct);
+app.post(`${apiPrefix}/products`, productController.createProduct);
 
 
 app.listen(app.get('port'), () => {
