@@ -1,4 +1,5 @@
 const Merchant = require('../models/Merchant');
+const uuidv1 = require('uuid/v1');
 
 const checkInput = (req) => {
   if (req.body.name === '') {
@@ -29,6 +30,8 @@ const createMerchant = async (req, res, next) => {
 
     const m = new Merchant({
       name: req.body.name,
+      client_id: uuidv1(),
+      client_secret: uuidv1(),
     });
     m.save((err) => {
       if (err) {
