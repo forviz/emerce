@@ -1,7 +1,7 @@
 // ======================================================
 // Import Cotrollers
 // ======================================================
-const cartController = require('./Controllers/cartController')
+import cartController from './Controllers/cartController'
 
 const bodyParser = require('body-parser');
 const express = require('express');

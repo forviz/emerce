@@ -1,5 +1,5 @@
-const _ = require('lodash');
-const Cart = require("../Models/Cart");
+import _ from 'lodash';
+import Cart from '../Models/Cart';
 
 const getCartByRefId = async (req, res) => {
   const ref = req.params.ref;
