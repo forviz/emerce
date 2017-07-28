@@ -36,6 +36,7 @@ app.get(`${apiPrefix}/`, (req, res) => {
   res.send({ message: 'Welcome to EMERCE' });
 });
 
+<<<<<<< HEAD
 app.get(`${apiPrefix}/products`, productController.getAll);
 app.post(`${apiPrefix}/products`, productController.createProduct);
 app.get(`${apiPrefix}/products/:product_id`, productController.getSingle);
@@ -43,6 +44,8 @@ app.put(`${apiPrefix}/products/:product_id`, productController.updateProduct);
 app.delete(`${apiPrefix}/products/:product_id`, productController.delete);
 
 
+=======
+>>>>>>> forviz/master
 app.listen(app.get('port'), () => {
   console.log('EMERCE api server started');
 });
