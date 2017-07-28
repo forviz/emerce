@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
+  id: Schema.Types.ObjectId,
   type: String,
   name: String,
   description: String,
@@ -17,7 +18,13 @@ const productSchema = new Schema({
     includes_tax: Boolean
   }],
   commodity_type: String,
-
+  weight: {
+    unit: {
+      type: String,
+      default: 'kg',
+    },
+    value: Number
+  }
 
 });
 
