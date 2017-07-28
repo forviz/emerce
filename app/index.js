@@ -9,7 +9,6 @@ const chalk = require('chalk');
 dotenv.config();
 
 const app = express();
-
 /**
  * Connect to MongoDB.
  */

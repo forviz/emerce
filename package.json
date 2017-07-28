@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepush": "npm test",
+    "test:scenario": "node ./test/test-scenario",
     "test": "PORT=7654 mocha --reporter spec ./test/*.test.js",
     "test:watch": "npm test -- --watch",
     "lint": "eslint app",
@@ -36,6 +37,7 @@
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "express": "^4.15.3",
     "express-session": "^1.15.4",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "mongoose": "^4.11.4",
