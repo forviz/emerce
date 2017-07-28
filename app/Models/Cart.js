@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema;
 const cartSchema = new Schema({
   ref: String,
   merchantId: String,
@@ -9,5 +9,4 @@ const cartSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-
-export default mongoose.model('Cart', cartSchema );
+export default mongoose.model('Cart', cartSchema);
