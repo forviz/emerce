@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var cartSchema = new Schema({
+const cartSchema = new Schema({
   ref: String,
   merchantId: String,
   items: [{}],

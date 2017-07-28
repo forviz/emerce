@@ -48,28 +48,15 @@ app.get(`${apiPrefix}/`, (req, res) => {
 // ======================================================
 
 // create cart or add items to cart by referenceId
-app.post(`${apiPrefix}/carts/:ref/items`, (req, res) => {
-  return cartController.createOrUpdateCartByRefId(req, res)
-});
+app.post(`${apiPrefix}/carts/:ref/items`, cartController.createOrUpdateCartByRefId)
 // get cart by referenceId
-app.get(`${apiPrefix}/carts/:ref`, (req, res) => {
-  return cartController.getCartByRefId(req, res)
-});
-
-// // delete cart by referenceId
-app.delete(`${apiPrefix}/carts/:ref`, (req, res) => {
-  return cartController.deleteCartByRefId(req, res);
-});
-
-// // get cart items by referenceId
-app.get(`${apiPrefix}/carts/:ref/items`, (req, res) => {
-  return cartController.getCartItemsByRefId(req, res);
-});
-
-// // update cart item by referenceId & productId
-app.put(`${apiPrefix}/carts/:ref/items/:productId`, (req, res) => {
-  return cartController.updateCartItemByRefIdAndProductId(req, res);
-});
+app.get(`${apiPrefix}/carts/:ref`, cartController.getCartByRefId)
+// delete cart by referenceId
+app.delete(`${apiPrefix}/carts/:ref`, cartController.deleteCartByRefId)
+// get cart items by referenceId
+app.get(`${apiPrefix}/carts/:ref/items`, cartController.getCartItemsByRefId)
+// update cart item by referenceId & productId
+app.put(`${apiPrefix}/carts/:ref/items/:productId`, cartController.updateCartItemByRefIdAndProductId)
 
 // ======================================================
 // Carts Add-on
