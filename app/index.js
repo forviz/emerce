@@ -1,3 +1,8 @@
+// ======================================================
+// Import Cotrollers
+// ======================================================
+import cartController from './Controllers/cartController';
+
 const bodyParser = require('body-parser');
 const express = require('express');
 // const session = require('express-session');
@@ -44,6 +49,12 @@ app.get(`${apiPrefix}/`, (req, res) => {
   res.send({ message: 'Welcome to EMERCE' });
 });
 
+// ************************** Set Url 404 ************************** //
+// app.use((req, res) => {
+//   const err = res.responseWithError(404);
+//   res.status(err.status).send(err);
+// });
+// ************************** End Set Url 404 ************************** //
 app.post('/oauth/access_token', oauthController.createToken);
 app.post('/merchant', merchantController.createMerchant);
 
@@ -53,8 +64,33 @@ app.get(`${apiPrefix}/products/:product_id`, productController.getSingle);
 app.put(`${apiPrefix}/products/:product_id`, productController.updateProduct);
 app.delete(`${apiPrefix}/products/:product_id`, productController.delete);
 
+// ======================================================
+// Carts API
+// ======================================================
+// create cart or add items to cart by referenceId
+app.post(`${apiPrefix}/carts/:ref/items`, cartController.createOrUpdateCartByRefId);
+// get cart by referenceId
+app.get(`${apiPrefix}/carts/:ref`, cartController.getCartByRefId);
+// delete cart by referenceId
+app.delete(`${apiPrefix}/carts/:ref`, cartController.deleteCartByRefId);
+// get cart items by referenceId
+app.get(`${apiPrefix}/carts/:ref/items`, cartController.getCartItemsByRefId);
+// update cart item by referenceId & productId
+app.put(`${apiPrefix}/carts/:ref/items/:productId`, cartController.updateCartItemByRefIdAndProductId);
+// ======================================================
+// Carts Add-on
+// ======================================================
+// get all carts
+// app.get(`${apiPrefix}/carts`, (req, res) => {
+//   res.json({"foo": "bar"});
+// });
+// // get cart by merchantId
+// app.get(`${apiPrefix}/carts/${merchantId}`, (req, res) => {
+//   res.json({"merchantId": merchantId});
+// });
+
 app.listen(app.get('port'), () => {
-  console.log('EMERCE api server started');
+  console.log('EMERCE api server started on port', process.env.PORT || 3000);
 });
 
 module.exports = app;
