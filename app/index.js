@@ -19,7 +19,6 @@ const productController = require('./controllers/product');
 dotenv.config();
 
 const app = express();
-
 /**
  * Connect to MongoDB.
  */
